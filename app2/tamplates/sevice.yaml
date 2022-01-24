@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    env  : prod
+spec:
+  selector:
+    project: app2
+  ports:
+    - name      : app2-lisen
+      protocol  : TCP
+      port      : 8082
+      targetPort: 80
+  type: ClusterIP
