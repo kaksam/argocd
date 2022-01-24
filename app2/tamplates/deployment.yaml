@@ -1,9 +1,9 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-deployment
+  name: {{ .Release.Name }}-deployment2
   labels:
-    app : {{ .Release.Name }}-deployment
+    app : {{ .Release.Name }}-deployment2
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -15,7 +15,7 @@ spec:
         project: {{ .Release.Name }}
     spec:
       containers:
-        - name : {{ .Release.Name }}-web
+        - name : {{ .Release.Name }}-web2
           image: {{ .Values.container.image }}
           ports:
             - containerPort: 80
