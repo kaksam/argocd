@@ -1,20 +1,21 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: nginx-test
+  name: {{ .Release.Name }}-deployment
   labels:
-    app : app1
+    app : {{ .Release.Name }}-deployment
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      project: app1
+      project: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        project: app1
+        project: {{ .Release.Name }}   # Service will look for those PODS Labels!!!
     spec:
       containers:
-        - name : nginx-test
-          image: nginx:latest
+        - name : {{ .Release.Name }}-web
+          image: {{ .Values.container.image }}
           ports:
             - containerPort: 80

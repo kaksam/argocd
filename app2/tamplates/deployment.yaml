@@ -1,20 +1,21 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: nginx-test
+  name: {{ .Release.Name }}-deployment
   labels:
-    app : app2
+    app : {{ .Release.Name }}-deployment
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      project: app2
+      project: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        project: app2
+        project: {{ .Release.Name }}
     spec:
       containers:
-        - name : nginx-test
-          image: nginx:latest
+        - name : {{ .Release.Name }}-web
+          image: {{ .Values.container.image }}
           ports:
             - containerPort: 80
