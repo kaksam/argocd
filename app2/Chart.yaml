@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name       : App2-HelmChart
 description: My Helm app2 chart for Kubernetes
 type       : application
