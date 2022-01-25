@@ -50,14 +50,14 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pi
+  name: testjob
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   template:
     spec:
       containers:
-      - name: pi
+      - name: testjob
         image: perl
         command: ["perl",  "-Mqweqwqwebignum=bpi", "-wle", "print bpi(2000)"]
       restartPolicy: Never
