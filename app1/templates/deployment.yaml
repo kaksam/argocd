@@ -59,6 +59,6 @@ spec:
       containers:
       - name: testjob
         image: perl
-        command: ["perl",  "-Mqweqwqwebignum=bpi", "-wle", "print bpi(2000)"]
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
       restartPolicy: Never
   backoffLimit: 4
