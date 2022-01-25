@@ -20,7 +20,7 @@ spec:
         - name : {{ .Release.Name }}-web
           image: {{ .Values.container.image }}
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
 
 ---
 apiVersion : apps/v1
@@ -45,4 +45,20 @@ spec:
         - name : {{ .Release.Name }}-web1
           image: {{ .Values.container.image2 }}
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mqweqwqwebignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
