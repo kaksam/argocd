@@ -1,20 +1,20 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: SECOND
+  name: second
   labels:
-    app : SECOND
+    app : second
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      project: SECOND
+      project: second
   template:
     metadata:
       labels:
-        project: SECOND   # Service will look for those PODS Labels!!!
+        project: second   # Service will look for those PODS Labels!!!
     spec:
       containers:
         - name : {{ .Release.Name }}-web
@@ -26,20 +26,20 @@ spec:
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: FIRST
+  name: first
   labels:
-    app : FIRST
+    app : first
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      project: FIRST
+      project: first
   template:
     metadata:
       labels:
-        project: FIRST   # Service will look for those PODS Labels!!!
+        project: first   # Service will look for those PODS Labels!!!
     spec:
       containers:
         - name : {{ .Release.Name }}-web1
