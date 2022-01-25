@@ -1,6 +1,6 @@
 # Default Values for my Helm Chart
 
 container:
-  image: mysql:latest
+  image: nginx:latest
 
-replicaCount: 4
+replicaCount: 3

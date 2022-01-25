@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}-service
   labels:
-    env  : app2
+    env  : app1
 spec:
   selector:
     project: {{ .Release.Name }}
