@@ -2,6 +2,6 @@
 
 container:
   image: nginx:latest
-  image2: ubuntu:latest
+  image2: tomcat:latest
 
 replicaCount: 3
