@@ -1,3 +1,4 @@
+---
 apiVersion : apps/v1
 kind: Deployment
 metadata:
@@ -5,7 +6,7 @@ metadata:
   labels:
     app : {{ .Release.Name }}-deployment
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -19,5 +20,29 @@ spec:
       containers:
         - name : {{ .Release.Name }}-web
           image: {{ .Values.container.image }}
+          ports:
+            - containerPort: 80
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment1
+  labels:
+    app : {{ .Release.Name }}-deployment1
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      project: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        project: {{ .Release.Name }}   # Service will look for those PODS Labels!!!
+    spec:
+      containers:
+        - name : {{ .Release.Name }}-web1
+          image: {{ .Values.container.image2 }}
           ports:
             - containerPort: 80

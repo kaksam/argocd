@@ -1,6 +1,7 @@
 # Default Values for my Helm Chart
 
 container:
-  image: tomcat:latest
+  image: httpd:latest
+  image2: maven:latest
 
 replicaCount: 3
