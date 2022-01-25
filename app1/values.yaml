@@ -1,7 +1,7 @@
 # Default Values for my Helm Chart
 
 container:
-  image: httpd:latest
-  image2: tomcat:latest
+  image: nginx:latest
+  image2: ubuntu:latest
 
 replicaCount: 3
