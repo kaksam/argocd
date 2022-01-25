@@ -2,6 +2,6 @@
 
 container:
   image: httpd:latest
-  image2: maven:latest
+  image2: tomcat:latest
 
 replicaCount: 3
